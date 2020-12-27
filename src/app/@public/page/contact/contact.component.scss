@@ -73,8 +73,6 @@
     border:none;
     background:#991D57;
     background-image:linear-gradient(bottom, #8C1C50 0%, #991D57 52%);
-    background-image:-moz-linear-gradient(bottom, #8C1C50 0%, #991D57 52%);
-    background-image:-webkit-linear-gradient(bottom, #8C1C50 0%, #991D57 52%);
     color:#FFF;
     margin:0 0 5px;
     padding:10px;
@@ -91,9 +89,6 @@
  }
  input:required, textarea:required {  
     box-shadow: none;
-    -moz-box-shadow: none;  
-    -webkit-box-shadow: none;  
-    -o-box-shadow: none;  
  } 
  #contact-form .required {  
     font-weight:bold;  
