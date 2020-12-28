@@ -1,3 +1,4 @@
+import { GraphqlModule } from './@graphql/modules/graphql.module';
 import { PublicModule } from './@public/page/public.module';
 import { AdminModule } from './@admin/page/admin.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -14,7 +15,8 @@ import { AppComponent } from './app.component';
     BrowserModule,
     PublicModule,
     AdminModule,
-    AppRoutingModule
+    AppRoutingModule,
+    GraphqlModule
   ],
   providers: [],
   bootstrap: [AppComponent]

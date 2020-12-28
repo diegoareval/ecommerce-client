@@ -6,7 +6,8 @@
       "@shop/*": ["src/app/@public/*"],
       "@admin/*": ["src/app/@admin/*"],
       "@admin-core/*": ["src/app/@admin/core/*"],
-      "@public-core/*": ["src/app/@public/core/*"]
+      "@public-core/*": ["src/app/@public/core/*"],
+      "@graphql/*": ["src/app/@graphql/*"]
     },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
