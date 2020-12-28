@@ -1,8 +1,8 @@
 /* General Styles */
 .main{
-    background:url(https://images.pexels.com/photos/5598/tablet-galaxy-white-blog.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260) no-repeat;
+    background:url(https://images.pexels.com/photos/95916/pexels-photo-95916.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260) no-repeat;
     background-size: cover;
-    filter: brightness(100%);
+    filter: brightness(60%);
     height:85vh;
     background-color: #000;
  }
@@ -25,7 +25,8 @@
     margin: 0 0 20px 0;
  }
  #contact-form {
-    background-color:rgba(72,72,72,0.9);
+    /* background-color:rgba(72,72,72,0.9); */
+    background-color:rgb(72,72,72, 0.9);
     padding: 10px 20px 30px 20px;
     max-width:100%;
     float: left;
@@ -33,9 +34,9 @@
     position: absolute;
     margin-top:30px;
     margin-left: -260px;
-    border-radius:7px;
-    -webkit-border-radius:7px;
-    -moz-border-radius:7px;
+    border-radius:27px;
+    -webkit-border-radius:27px;
+    -moz-border-radius:27px;
  }
  #contact-form input,   
  #contact-form select,   
