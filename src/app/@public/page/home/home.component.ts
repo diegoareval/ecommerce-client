@@ -1,6 +1,5 @@
 import { UsersService } from './../../../@core/services/users.service';
 import { AuthService } from './../../../@core/services/auth.service';
-import { ApiService } from './../../../@graphql/services/api.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

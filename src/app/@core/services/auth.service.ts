@@ -35,7 +35,7 @@ export class AuthService extends ApiService {
       {
         headers: new HttpHeaders({
           Authorization:
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjVmZTdmMWRlMDk0YjA3MzI3Mjk1ZDc3OCIsIm5hbWUiOiJEaWVnbyIsImxhc3RuYW1lIjoiQXJldmFsbyIsImVtYWlsIjoiZGllZ29AZ21haWwuY29tIiwicm9sZSI6IkFETUlOIiwiaWQiOjF9LCJpYXQiOjE2MDkxNjQyOTcsImV4cCI6MTYwOTI1MDY5N30.AGMaNrjKcH1b_Plo6dEMxkIKzq41yegQSGUK0g2DWVo',
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjVmZTdmMWRlMDk0YjA3MzI3Mjk1ZDc3OCIsIm5hbWUiOiJEaWVnbyIsImxhc3RuYW1lIjoiQXJldmFsbyIsImVtYWlsIjoiZGllZ29AZ21haWwuY29tIiwicm9sZSI6IkFETUlOIiwiaWQiOjF9LCJpYXQiOjE2MDkyNTcxMDksImV4cCI6MTYwOTM0MzUwOX0.IZYOMycDhlQICu5-vLRl5rnvOr97U8m0UmT8FJOt6OU',
         }),
       }
     ).pipe(
