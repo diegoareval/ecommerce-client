@@ -1,47 +1,85 @@
+<section id="contact">
+  
+  <h1 class="section-header">Contacto</h1>
+  
+  <div class="contact-wrapper">
+    
+      <!---------------- 
 
-<div class="main">
-    <div id="contact-form">
-        <div>
-            <h1 class="text-white">Bienvenido!</h1> 
-            <h4 class="text-white">Si tienes una duda no dudes en contactarnos.</h4> 
-        </div>
-            <p id="failure">Mensaje no enviado</p>  
-            <p id="success">Mensaje enviado exitosamente</p>
+      CONTACT PAGE LEFT 
     
-               <form method="post" action="/">
-                <div>
-                  <label for="name">
-                      <span class="required">Nombre: *</span> 
-                      <input type="text" id="name" name="name" value="" placeholder="Tu nombre" required="required" tabindex="1" autofocus="autofocus" />
-                  </label> 
-                </div>
-                <div>
-                  <label for="email">
-                      <span class="required">Correo: *</span>
-                      <input type="email" id="email" name="email" value="" placeholder="Tu correo" tabindex="2" required="required" />
-                  </label>  
-                </div>
-                <div>		          
-                  <label for="subject">
-                  <span class="text-white">Motivo: </span>
-                      <select id="subject" name="subject" tabindex="4">   
-                         <option value="hello">Precio de Productos</option>
-                         <option value="quote">Politicas de Reembolso</option>  
-                         <option value="general">Politica de referidos</option>
-                         <option value="general">Otros</option>
-                      </select>
-                  </label>
-                </div>
-                <div>		          
-                  <label for="message">
-                      <span class="required">Mensaje: *</span> 
-                      <textarea id="message" name="message" placeholder="Mensaje o descripcion" tabindex="5" required="required"></textarea> 
-                  </label>  
-                </div>
-                <div>		           
-                  <button name="submit" type="submit" id="submit" >SEND</button> 
-                </div>
-               </form>
+      -----------------> 
     
+    <form class="form-horizontal" role="form">
+       
+      <div class="form-group">
+        <div class="col-sm-12">
+          <input type="text" class="form-control" id="name" placeholder="Nombre" name="name" value="">
         </div>
-</div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-12">
+          <input type="email" class="form-control" id="email" placeholder="Correo Electronico" name="email" value="">
+        </div>
+      </div>
+
+      <textarea class="form-control" rows="10" placeholder="Mensaje..." name="message"></textarea>
+      
+      <button class="btn btn-primary send-button" id="submit" type="submit" value="SEND">
+        <div class="button">
+          <i class="fa fa-paper-plane"></i><span class="send-text">Enviar</span>
+        </div>
+      
+      </button>
+      
+    </form>
+    
+      <!---------------- 
+
+      CONTACT PAGE RIGHT 
+    
+      -----------------> 
+    
+      <div class="direct-contact-container">
+
+        <ul class="contact-list">
+          <li class="list-item"><i class="fa fa-map-marker fa-2x"><span class="contact-text place">El salvador | Chalatenango</span></i></li>
+          
+          <li class="list-item"><i class="fa fa-phone fa-2x"><span class="contact-text phone"><a href="tel:1-212-555-5555" title="Contactame al">(503) 2222 2222</a></span></i></li>
+          
+          <li class="list-item"><i class="fa fa-envelope fa-2x"><span class="contact-text gmail"><a href="mailto:#" title="Send me an email">diego2000avelar@gmail.com</a></span></i></li>
+          
+        </ul>
+
+        <hr>
+        <ul class="social-media-list">
+          <li><a href="#" target="_blank" class="contact-icon">
+            <i class="fa fa-snapchat" aria-hidden="true"></i></a>
+          </li>
+          <li><a href="#" target="_blank" class="contact-icon">
+            <i class="fa fa-twitter" aria-hidden="true"></i></a>
+          </li>
+          <li><a href="#" target="_blank" class="contact-icon">
+            <i class="fa fa-instagram" aria-hidden="true"></i></a>
+          </li>
+          <li><a href="#" target="_blank" class="contact-icon">
+            <i class="fa fa-facebook" aria-hidden="true"></i></a>
+          </li>
+          <li><a href="#" target="_blank" class="contact-icon">
+            <i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+          </li>
+        </ul>
+        <hr>
+
+        <div class="copyright">&copy; Derechos reservados</div>
+
+      </div>
+    
+  </div>
+  
+</section>  
+  
+
+  
+  

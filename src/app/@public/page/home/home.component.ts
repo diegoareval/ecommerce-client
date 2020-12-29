@@ -1,3 +1,5 @@
+import { UsersService } from './../../../@core/services/users.service';
+import { AuthService } from './../../../@core/services/auth.service';
 import { ApiService } from './../../../@graphql/services/api.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,18 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private api: ApiService) { }
+  constructor(private auth: AuthService, private register: UsersService) { }
 
   ngOnInit(): void {
-    this.api.login("diego@gmail.com", "1234").subscribe(result => {
+    this.auth.login("diego@gmail.com", "1234").subscribe(result => {
       console.log(result);
     });
 
-    this.api.getUsers().subscribe(result => {
+    this.register.getUsers().subscribe(result => {
       console.log(result);
     });
 
-    this.api.getMe().subscribe(result => {
+    this.auth.getMe().subscribe(result => {
       console.log(result);
     });
   }
