@@ -1,5 +1,5 @@
 import { AuthService } from '@core/services/auth.service';
-import { ILoginForm } from './../../../../@core/interfaces/login.interface';
+import { ILoginForm, IResultLogin } from '@core/interfaces/login.interface';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -16,6 +16,18 @@ login: ILoginForm = {
 constructor(private auth: AuthService){}
 
   ngOnInit(): void {
+  }
+
+  init(){
+    this.auth.login(this.login.email, this.login.password).subscribe((result: IResultLogin)=>{
+      console.log(result);
+      if(result.status && result.token) {
+        console.log("inicio de sesion correcto");
+        return;
+      }
+      console.log("inicio de sesion no correcto");
+      
+    });
   }
 
 }

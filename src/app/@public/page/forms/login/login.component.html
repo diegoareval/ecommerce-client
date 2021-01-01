@@ -1,24 +1,47 @@
 <div id="main">
-    <div class="login-box">
-        <h2>Iniciar sesion</h2>
-        <form>
-          <div class="user-box">
-            <input type="text" name="" required="">
-            <label>Usuario</label>
-          </div>
-          <div class="user-box">
-            <input type="password" name="" required="">
-            <label>Contrase.</label>
-          </div>
-          <div id="btn-cont"> 
-            <a href="#">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                Iniciar Sesion
-              </a>
-          </div>
-        </form>
+  <div class="login-box">
+    <h2>Iniciar sesion</h2>
+    <form (ngSubmit)="init()" #forma="ngForm">
+      <div class="user-box">
+        <input
+          #email="ngModel"
+          [(ngModel)]="login.email"
+          type="text"
+          name="email"
+          required
+          pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"
+          [ngClass]="{
+            'is-valid': !email.invalid,
+            'is-invalid': email.invalid
+          }"
+          class="form-control"
+        />
+        <label>Correo</label>
       </div>
+      <div class="user-box">
+        <input
+          type="password"
+          #password="ngModel"
+          [(ngModel)]="login.password"
+          name="password"
+          required
+          class="form-control"
+          [ngClass]="{
+            'is-valid': !password.invalid,
+            'is-invalid': password.invalid
+          }"
+        />
+        <label>Contrase.</label>
+      </div>
+      <div id="btn-cont">
+        <button type="submit" [disabled]="!forma.valid">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          Iniciar Sesion
+        </button>
+      </div>
+    </form>
+  </div>
 </div>
