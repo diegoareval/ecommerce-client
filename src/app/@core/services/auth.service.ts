@@ -1,3 +1,4 @@
+import { ISession } from './../interfaces/session.interface';
 import { Apollo } from 'apollo-angular';
 import {
   LOGIN_QUERY,
@@ -35,7 +36,7 @@ export class AuthService extends ApiService {
       {
         headers: new HttpHeaders({
           Authorization:
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjVmZTdmMWRlMDk0YjA3MzI3Mjk1ZDc3OCIsIm5hbWUiOiJEaWVnbyIsImxhc3RuYW1lIjoiQXJldmFsbyIsImVtYWlsIjoiZGllZ29AZ21haWwuY29tIiwicm9sZSI6IkFETUlOIiwiaWQiOjF9LCJpYXQiOjE2MDkyNTcxMDksImV4cCI6MTYwOTM0MzUwOX0.IZYOMycDhlQICu5-vLRl5rnvOr97U8m0UmT8FJOt6OU',
+            (this.getSession() as ISession).token,
         }),
       }
     ).pipe(
@@ -46,4 +47,24 @@ export class AuthService extends ApiService {
   }
 
   register() {}
+
+  setSession(token: string, expiresTimeinHours = 24) {
+    // inicializar fecha
+    const date = new Date();
+    // sumar la fecha de expiracion a la hora actual
+    date.setHours(date.getHours() + expiresTimeinHours);
+    
+    // crear payload de la session
+    const session: ISession = {
+      expiresIn: new Date(date).toISOString(),
+      token
+    };
+    // agregar token al localstorage
+    localStorage.setItem("session", JSON.stringify(session))
+  }
+
+  getSession(): ISession{
+    // obteniendo la sesion del local storage
+    return JSON.parse(localStorage.getItem("session"))
+  }
 }

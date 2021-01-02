@@ -1,3 +1,4 @@
+import { IMedata } from './../../../../@core/interfaces/session.interface';
 import { AuthService } from '@core/services/auth.service';
 import { ILoginForm, IResultLogin } from '@core/interfaces/login.interface';
 import { Component, OnInit } from '@angular/core';
@@ -18,16 +19,27 @@ login: ILoginForm = {
 constructor(private auth: AuthService){}
 
   ngOnInit(): void {
+    if(this.auth.getSession()!=null){
+      this.auth.getMe().subscribe((result: IMedata) => {
+        if(!result.status){
+          localStorage.removeItem("session")
+        }
+      });
+    }else{
+      console.log("sesion no iniciada");
+      
+    }
   }
 
   init(){
     this.auth.login(this.login.email, this.login.password).subscribe((result: IResultLogin)=>{
-      console.log(result);
-      if(result.status && result.token) {
-        basicAlert(TYPE_ALERT.SUCCESS,result.message)
-        return;
-      }
-      if(result.status){
+      if(result.status) {
+        if(result.token!=null){
+          // guardar la sesion del usuario
+          this.auth.setSession(result.token)
+          basicAlert(TYPE_ALERT.SUCCESS,result.message)
+          return;
+        }
         basicAlert(TYPE_ALERT.WARNING, result.message)
         return;
       }
