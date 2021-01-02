@@ -1,6 +1,8 @@
 import { AuthService } from '@core/services/auth.service';
 import { ILoginForm, IResultLogin } from '@core/interfaces/login.interface';
 import { Component, OnInit } from '@angular/core';
+import { basicAlert } from '@shared/alerts/toasts';
+import { TYPE_ALERT } from '@shared/alerts/values.config';
 
 @Component({
   selector: 'app-login',
@@ -22,11 +24,14 @@ constructor(private auth: AuthService){}
     this.auth.login(this.login.email, this.login.password).subscribe((result: IResultLogin)=>{
       console.log(result);
       if(result.status && result.token) {
-        console.log("inicio de sesion correcto");
+        basicAlert(TYPE_ALERT.SUCCESS,result.message)
         return;
       }
-      console.log("inicio de sesion no correcto");
-      
+      if(result.status){
+        basicAlert(TYPE_ALERT.WARNING, result.message)
+        return;
+      }
+      basicAlert(TYPE_ALERT.ERROR, result.message)
     });
   }
 
