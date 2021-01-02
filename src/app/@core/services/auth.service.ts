@@ -1,4 +1,4 @@
-import { ISession } from './../interfaces/session.interface';
+import { ISession, IMedata } from './../interfaces/session.interface';
 import { Apollo } from 'apollo-angular';
 import {
   LOGIN_QUERY,
@@ -15,6 +15,19 @@ import { HttpHeaders } from '@angular/common/http';
 export class AuthService extends ApiService {
   constructor(apollo: Apollo) {
     super(apollo);
+  }
+
+  start(){
+    if(this.getSession()!=null){
+      this.getMe().subscribe((result: IMedata) => {
+        if(!result.status){
+          this.removeSession();
+        }
+        console.log("sesion iniciada");
+      });
+    }else{
+      console.log("sesion no iniciada");
+    }
   }
 
   login(email: string, password: string) {
@@ -66,5 +79,10 @@ export class AuthService extends ApiService {
   getSession(): ISession{
     // obteniendo la sesion del local storage
     return JSON.parse(localStorage.getItem("session"))
+  }
+
+  removeSession(){
+    // eliminar session del localstorage
+    localStorage.removeItem("session")
   }
 }

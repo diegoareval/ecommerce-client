@@ -19,16 +19,7 @@ login: ILoginForm = {
 constructor(private auth: AuthService){}
 
   ngOnInit(): void {
-    if(this.auth.getSession()!=null){
-      this.auth.getMe().subscribe((result: IMedata) => {
-        if(!result.status){
-          localStorage.removeItem("session")
-        }
-      });
-    }else{
-      console.log("sesion no iniciada");
-      
-    }
+     this.auth.start();
   }
 
   init(){
