@@ -8,25 +8,40 @@ import { ApiService } from './../../@graphql/services/api.service';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { HttpHeaders } from '@angular/common/http';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService extends ApiService {
+  // creando observable
+  accessVar = new Subject<IMedata>();
+
+  // variable que contendra el observable
+  accessVar$ = this.accessVar.asObservable();
   constructor(apollo: Apollo) {
     super(apollo);
   }
 
-  start(){
-    if(this.getSession()!=null){
+  // actualizar la sesion almacenada en el observable
+  updateSession(newValue: IMedata) {
+    this.accessVar.next(newValue);
+  }
+
+  start() {
+    if (this.getSession() != null) {
       this.getMe().subscribe((result: IMedata) => {
-        if(!result.status){
+        if (!result.status) {
           this.removeSession();
+          return;
         }
-        console.log("sesion iniciada");
+        console.log('sesion iniciada');
+        this.updateSession(result);
       });
-    }else{
-      console.log("sesion no iniciada");
+      return;
+    } else {
+      this.updateSession({ status: false });
+      console.log('sesion no iniciada');
     }
   }
 
@@ -48,8 +63,7 @@ export class AuthService extends ApiService {
       },
       {
         headers: new HttpHeaders({
-          Authorization:
-            (this.getSession() as ISession).token,
+          Authorization: (this.getSession() as ISession).token,
         }),
       }
     ).pipe(
@@ -66,23 +80,23 @@ export class AuthService extends ApiService {
     const date = new Date();
     // sumar la fecha de expiracion a la hora actual
     date.setHours(date.getHours() + expiresTimeinHours);
-    
+
     // crear payload de la session
     const session: ISession = {
       expiresIn: new Date(date).toISOString(),
-      token
+      token,
     };
     // agregar token al localstorage
-    localStorage.setItem("session", JSON.stringify(session))
+    localStorage.setItem('session', JSON.stringify(session));
   }
 
-  getSession(): ISession{
+  getSession(): ISession {
     // obteniendo la sesion del local storage
-    return JSON.parse(localStorage.getItem("session"))
+    return JSON.parse(localStorage.getItem('session'));
   }
 
-  removeSession(){
+  removeSession() {
     // eliminar session del localstorage
-    localStorage.removeItem("session")
+    localStorage.removeItem('session');
   }
 }

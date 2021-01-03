@@ -1,7 +1,7 @@
 <nav class="navbar navbar-dark bg-dark sticky-top">
 <!-- Links -->
 <ul class=" navbar-nav d-flex flex-row-reverse justify-content-between">
-  <li class="nav-item dropdown">
+  <li class="nav-item dropdown" *ngIf="access">
     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Usuario
     </a>
@@ -15,8 +15,8 @@
     <li class="nav-item">
       <a [routerLink]="['/']" class="nav-link margin-custom" href="#">Inicio</a>
     </li>
-    <li class="nav-item">
-      <a [routerLink]="['/admin']" class="nav-link margin-custom" href="#">Panel Admin</a>
+    <li class="nav-item" *ngIf="access">
+      <a [routerLink]="['/admin']" class="nav-link margin-custom" href="#">Admin</a>
     </li>
     <li class="nav-item">
       <a [routerLink]="['/contact']" class="nav-link margin-custom" href="#">Contacto</a>
@@ -24,10 +24,10 @@
     <li class="nav-item">
         <a [routerLink]="['/about']" class="nav-link margin-custom" href="#">Acerca de</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="!access">
         <a [routerLink]="['/login']" class="nav-link margin-custom" href="#">Login</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="!access">
         <a [routerLink]="['/register']" class="nav-link margin-custom" href="#">Registro</a>
       </li>
       

@@ -28,6 +28,7 @@ constructor(private auth: AuthService){}
         if(result.token!=null){
           // guardar la sesion del usuario
           this.auth.setSession(result.token)
+          this.auth.updateSession(result);
           basicAlert(TYPE_ALERT.SUCCESS,result.message)
           return;
         }
