@@ -3,19 +3,19 @@
 <ul class=" navbar-nav d-flex flex-row-reverse justify-content-between">
   <li class="nav-item dropdown" *ngIf="access">
     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Usuario
+      {{userLabel}}
     </a>
     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-      <a class="dropdown-item" href="#">Action</a>
-      <a class="dropdown-item" href="#">Another action</a>
+      <a class="dropdown-item">Perfil</a>
+      <a class="dropdown-item" >Configuracion</a>
       <div class="dropdown-divider"></div>
-      <a class="dropdown-item" href="#">Something else here</a>
+      <a class="dropdown-item" (click)="logout()">Logout</a>
     </div>
   </li>
     <li class="nav-item">
       <a [routerLink]="['/']" class="nav-link margin-custom" href="#">Inicio</a>
     </li>
-    <li class="nav-item" *ngIf="access">
+    <li class="nav-item" *ngIf="access && role == 'ADMIN'">
       <a [routerLink]="['/admin']" class="nav-link margin-custom" href="#">Admin</a>
     </li>
     <li class="nav-item">

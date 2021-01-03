@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit {
   constructor(private auth: AuthService, private register: UsersService) { }
 
   ngOnInit(): void {
+    /*
     this.auth.login("diego@gmail.com", "1234").subscribe(result => {
       console.log(result);
     });
@@ -22,7 +23,7 @@ export class HomeComponent implements OnInit {
 
     this.auth.getMe().subscribe(result => {
       console.log(result);
-    });
+    });*/
   }
 
 }

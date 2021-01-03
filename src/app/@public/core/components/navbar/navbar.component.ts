@@ -15,15 +15,23 @@ export class NavbarComponent implements OnInit {
    // acceso y role
    access = false;
    role: string;
+   userLabel = '';
   constructor(private auth: AuthService) {
     // suscribirse al observable
     this.auth.accessVar$.subscribe((result)=>{
       this.session = result;
       this.access = result.status;
+      this.role = result.user?.role;
+      this.userLabel = `${result.user?.name} ${result.user?.lastname}`
     });
    }
 
   ngOnInit(): void {
+  }
+
+  // cerrar sesion
+  logout(){
+    this.auth.removeSession();
   }
 
 }

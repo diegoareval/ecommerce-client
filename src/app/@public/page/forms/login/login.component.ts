@@ -1,7 +1,7 @@
 import { IMedata } from './../../../../@core/interfaces/session.interface';
 import { AuthService } from '@core/services/auth.service';
 import { ILoginForm, IResultLogin } from '@core/interfaces/login.interface';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { basicAlert } from '@shared/alerts/toasts';
 import { TYPE_ALERT } from '@shared/alerts/values.config';
 
@@ -10,7 +10,7 @@ import { TYPE_ALERT } from '@shared/alerts/values.config';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 login: ILoginForm = {
   email: '',
   password: ''
@@ -18,9 +18,7 @@ login: ILoginForm = {
 
 constructor(private auth: AuthService){}
 
-  ngOnInit(): void {
-     this.auth.start();
-  }
+ 
 
   init(){
     this.auth.login(this.login.email, this.login.password).subscribe((result: IResultLogin)=>{

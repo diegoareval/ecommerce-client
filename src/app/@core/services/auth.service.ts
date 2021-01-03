@@ -49,6 +49,7 @@ export class AuthService extends ApiService {
     return this.get(LOGIN_QUERY, {
       email,
       password,
+      include: false
     }).pipe(
       map((result: any) => {
         return result.login;
@@ -98,5 +99,7 @@ export class AuthService extends ApiService {
   removeSession() {
     // eliminar session del localstorage
     localStorage.removeItem('session');
+    // actualizar la sesion
+    this.updateSession({status: false})
   }
 }
