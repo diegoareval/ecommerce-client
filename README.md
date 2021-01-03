@@ -29,3 +29,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## generate components from specific module
 ng g c @public/core/components/navbar --skipTests --module=@public/page/public.module.ts
 
+## generate guards 
+ng g g @core/guards/admin --skipTests
+
