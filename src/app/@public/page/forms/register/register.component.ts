@@ -1,6 +1,10 @@
-import { ApiService } from './../../../../@graphql/services/api.service';
-import { IRegisterForm } from './../../../../@core/interfaces/register.interface';
+import { IResultRegister } from '@core/interfaces/register.interface';
+import { UsersService } from '@core/services/users.service';
+import { IRegisterForm } from '@core/interfaces/register.interface';
 import { Component, OnInit } from '@angular/core';
+import { basicAlert } from '@shared/alerts/toasts';
+import { TYPE_ALERT } from '@shared/alerts/values.config';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -15,7 +19,7 @@ export class RegisterComponent implements OnInit {
    birthdate: '',
    lastname: ''
  }
-  constructor(private api: ApiService) { }
+  constructor(private api: UsersService, private router: Router) { }
 
   ngOnInit(): void {
     const data = new Date();
@@ -35,8 +39,14 @@ export class RegisterComponent implements OnInit {
 
   add(){
   // console.log("enviando datos", this.register)
-  this.api.register(this.register).subscribe((result) =>{
+  this.api.register(this.register).subscribe((result: IResultRegister) =>{
     console.log("result",result);
+    if(!result.status){
+      basicAlert(TYPE_ALERT.ERROR, result.message);
+      return;
+    }
+      basicAlert(TYPE_ALERT.SUCCESS, result.message);
+      this.router.navigate(['/login'])
   })
   }
 }

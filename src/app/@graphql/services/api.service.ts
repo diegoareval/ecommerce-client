@@ -33,15 +33,23 @@ export class ApiService {
         })
       );
   }
-   register(user: IRegisterForm){
-     return this.apollo.mutate({
-       mutation: REGISTER_USER,
-       variables: {
-         user,
-         include: false
-       }
-     }).pipe(map((result)=>{
-       return result.data;
-     }))
-   }
+
+  protected set(
+    mutation: DocumentNode,
+    variables: object = {},
+    context: object = {}
+  ) {
+    return this.apollo
+    .mutate({
+      mutation,
+      variables,
+      context
+    })
+    .pipe(
+      map((result) => {
+        return result.data;
+      })
+    );
+}
+  
 }
