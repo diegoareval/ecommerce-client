@@ -7,7 +7,7 @@ import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./date-picker-legal-age.component.scss']
 })
 export class DatePickerLegalAgeComponent implements OnInit {
-  model: NgbDateStruct;
+  
 
   currentDay = {
     year: new Date().getFullYear(),
@@ -24,6 +24,7 @@ export class DatePickerLegalAgeComponent implements OnInit {
     month: this.currentDay.month,
     day: this.currentDay.day
   };
+  model: NgbDateStruct = this.maxDate;
   @Output()  newDate = new EventEmitter<NgbDateStruct>();
   
   constructor() { 
