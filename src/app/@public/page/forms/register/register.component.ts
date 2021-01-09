@@ -11,5 +11,8 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  dataAssign($event){
+   console.log("getting data", $event);
+   
+  }
 }

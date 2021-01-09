@@ -1,3 +1,4 @@
+import { DatePickerLegalAgeModule } from './../../../../@shared/calendar/date-picker-legal-age/date-picker-legal-age.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -9,7 +10,8 @@ import { RegisterComponent } from './register.component';
   declarations: [RegisterComponent],
   imports: [
     CommonModule,
-    RegisterRoutingModule
+    RegisterRoutingModule,
+    DatePickerLegalAgeModule
   ]
 })
 export class RegisterModule { }
