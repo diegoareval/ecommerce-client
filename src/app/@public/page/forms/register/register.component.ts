@@ -1,3 +1,4 @@
+import { ApiService } from './../../../../@graphql/services/api.service';
 import { IRegisterForm } from './../../../../@core/interfaces/register.interface';
 import { Component, OnInit } from '@angular/core';
 
@@ -11,16 +12,16 @@ export class RegisterComponent implements OnInit {
    name: '',
    email: '',
    password: '',
-   birthday: '',
+   birthdate: '',
    lastname: ''
  }
-  constructor() { }
+  constructor(private api: ApiService) { }
 
   ngOnInit(): void {
     const data = new Date();
     data.setFullYear(new Date().getFullYear() - 18);
-    this.register.birthday = (data.toISOString()).substr(0, 10);
-    console.log(this.register);
+    this.register.birthdate = (data.toISOString()).substr(0, 10);
+   // console.log(this.register);
     
   }
   private formatNumber(num: number | string){
@@ -29,10 +30,13 @@ export class RegisterComponent implements OnInit {
   dataAssign($event){
    console.log("getting data", $event);
    const date =  `${$event.year}-${this.formatNumber($event.month)}-${this.formatNumber($event.day)}`;
-   this.register.birthday = date;
+   this.register.birthdate = date;
   }
 
   add(){
-  console.log("enviando datos", this.register)
+  // console.log("enviando datos", this.register)
+  this.api.register(this.register).subscribe((result) =>{
+    console.log("result",result);
+  })
   }
 }

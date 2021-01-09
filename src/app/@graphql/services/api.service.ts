@@ -1,3 +1,5 @@
+import { REGISTER_USER } from './../operations/mutation/user';
+import { IRegisterForm } from './../../@core/interfaces/register.interface';
 import {
   LOGIN_QUERY,
   USERS_LIST_QUERY,
@@ -31,5 +33,15 @@ export class ApiService {
         })
       );
   }
-
+   register(user: IRegisterForm){
+     return this.apollo.mutate({
+       mutation: REGISTER_USER,
+       variables: {
+         user,
+         include: false
+       }
+     }).pipe(map((result)=>{
+       return result.data;
+     }))
+   }
 }

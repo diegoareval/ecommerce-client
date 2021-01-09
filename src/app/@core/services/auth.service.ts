@@ -74,7 +74,7 @@ export class AuthService extends ApiService {
     );
   }
 
-  register() {}
+
 
   setSession(token: string, expiresTimeinHours = 24) {
     // inicializar fecha
