@@ -1,3 +1,4 @@
+import { ITableColumns } from './../../@core/interfaces/table-column.interface';
 import { map } from 'rxjs/internal/operators/map';
 import { IResultData, IInfoPage } from './../../@core/interfaces/result-data';
 import { TablePaginationService } from './table-pagination.service';
@@ -15,6 +16,7 @@ export class TablePaginationComponent implements OnInit {
   @Input() context: object;
   @Input() itemsPage = 20;
   @Input() resultData: IResultData;
+  @Input() tableColumns: Array<ITableColumns> = undefined;
   @Input() include = true;
   infoPage: IInfoPage;
   data$: Observable<any>
@@ -26,6 +28,9 @@ export class TablePaginationComponent implements OnInit {
     }
     if (this.resultData === undefined) {
       throw new Error('resultData is undefined');
+    }
+    if (this.tableColumns === undefined) {
+      throw new Error('tableColumns is undefined');
     }
     this.infoPage = {
       page: 1,

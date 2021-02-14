@@ -1,3 +1,4 @@
+import { TablePaginationModule } from './../../../@shared/table-pagination/table-pagination.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -9,7 +10,8 @@ import { GenresComponent } from './genres.component';
   declarations: [GenresComponent],
   imports: [
     CommonModule,
-    GenresRoutingModule
+    GenresRoutingModule,
+    TablePaginationModule
   ]
 })
 export class GenresModule { }
