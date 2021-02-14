@@ -17,8 +17,8 @@ export class UsersComponent implements OnInit {
     this.context = {};
     this.itemsPage = 10;
     this.resultData = {
-      listKey: '',
-      definitionKey: ""
+      listKey: 'users',
+      definitionKey: 'users'
     };
     this.include = true;
   }
