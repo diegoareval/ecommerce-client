@@ -14,6 +14,13 @@ export class UsersComponent implements OnInit {
   include: boolean;
   resultData: IResultData
   ngOnInit(): void {
+    this.context = {};
+    this.itemsPage = 10;
+    this.resultData = {
+      listKey: '',
+      definitionKey: ""
+    };
+    this.include = true;
   }
 
 }
