@@ -1,1 +1,22 @@
-<p *ngFor="let data of data$ | async">{{data.name}}</p>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Apellido</th>
+          <th scope="col">Email</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let data of data$ | async">
+          <th scope="row">{{ data.id }}</th>
+          <td>
+            {{ data.name }}
+          </td>
+          <td>{{ data.lastname}}</td>
+          <td>{{ data.email }}</td>
+        </tr>
+        </tbody>
+      </table>
+</div>
