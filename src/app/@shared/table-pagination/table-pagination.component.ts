@@ -3,7 +3,7 @@ import { IResultData, IInfoPage } from './../../@core/interfaces/result-data';
 import { TablePaginationService } from './table-pagination.service';
 import { DocumentNode } from 'graphql';
 import { Component, Input, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/internal/observable';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-table-pagination',

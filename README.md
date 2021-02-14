@@ -27,8 +27,13 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
 ## generate components from specific module
-ng g c @public/core/components/navbar --skipTests --module=@public/page/public.module.ts
+ng g c @public/core/components/navbar --skipTests --module @public/page/public.module.ts
 
 ## generate guards 
 ng g g @core/guards/admin --skipTests
+
+## generate module
+ng g m @admin/page/genres --routing
+
+ ng g c @admin/page/genres --skipTests
 
