@@ -35,5 +35,6 @@ ng g g @core/guards/admin --skipTests
 ## generate module
 ng g m @admin/page/genres --routing
 
+## generate component
  ng g c @admin/page/genres --skipTests
 
