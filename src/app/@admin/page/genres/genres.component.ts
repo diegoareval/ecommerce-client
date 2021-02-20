@@ -4,7 +4,7 @@ import { IResultData } from './../../../@core/interfaces/result-data';
 import { GENRE_LIST_QUERY } from './../../../@graphql/operations/query/genre';
 import { Component, OnInit } from '@angular/core';
 import { DocumentNode } from 'graphql';
-import { formBasicDialog } from '@shared/alerts/alerts';
+import { basicDetails, formBasicDialog } from '@shared/alerts/alerts';
 import { basicAlert } from '@shared/alerts/toasts';
 import { TYPE_ALERT } from '@shared/alerts/values.config';
 
@@ -50,24 +50,31 @@ export class GenresComponent implements OnInit {
     const action = $event[0];
     const genre = $event[1];
     let defaultValue = '';
-    if (genre.name !== undefined && genre.name !== '') {
-      defaultValue = genre.name;
-    }
-    const html = `<input id="name" value="${defaultValue}" class="swal2-input" required>`;
-    if (action === 'add') {
-      const result = await formBasicDialog('Añadir Genero', html, 'name');
-      if (result.value) {
-        this.addGenre(result);
+    if (action === 'add' || 'edit') {
+      if (genre.name !== undefined && genre.name !== '') {
+        defaultValue = genre.name;
+      }
+      const html = `<input id="name" value="${defaultValue}" class="swal2-input" required>`;
+      if (action === 'add') {
+        const result = await formBasicDialog('Añadir Genero', html, 'name');
+        if (result.value) {
+          this.addGenre(result);
+          return;
+        }
         return;
       }
-      return;
-    }
-    if (action === 'edit') {
-      const result = await formBasicDialog('Modificar Genero', html, 'name');
-      if (result.value) {
-        this.editGenre(genre.id, result);
+      if (action === 'edit') {
+        const result = await formBasicDialog('Modificar Genero', html, 'name');
+        if (result.value) {
+          this.editGenre(genre.id, result);
+          return;
+        }
         return;
       }
+    }
+
+    if (action === 'show') {
+      basicDetails('Detalles', `${genre.name} (${genre.slug})`, 200);
       return;
     }
   }

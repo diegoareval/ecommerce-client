@@ -17,3 +17,11 @@ export async function formBasicDialog(title: string, html: string, property: str
         }
       });
 }
+
+export async function basicDetails(title: string, html: string, width: number) {
+    Swal.fire({
+        title,
+        text: html,
+        width: `${width}px`
+    })
+}
