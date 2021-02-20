@@ -17,7 +17,7 @@ export class UsersComponent implements OnInit {
   columns: Array<ITableColumns>;
   ngOnInit(): void {
     this.context = {};
-    this.itemsPage = 1;
+    this.itemsPage = 5;
     this.resultData = {
       listKey: 'users',
       definitionKey: 'users',

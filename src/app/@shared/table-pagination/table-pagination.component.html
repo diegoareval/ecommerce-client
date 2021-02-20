@@ -24,9 +24,10 @@
     (pageChange)="changePage()"
   >
   </ngb-pagination>
-  <!--<select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshCountries()">
-      <option [ngValue]="2">2 items per page</option>
-      <option [ngValue]="4">4 items per page</option>
-      <option [ngValue]="6">6 items per page</option>
-    </select>-->
+  <select class="custom-select" style="width: auto" [(ngModel)]="infoPage.itemsPage" (ngModelChange)="loadData()">
+      <option [ngValue]="5">5 Elementos por pagina</option>
+      <option [ngValue]="10">10 Elementos por pagina</option>
+      <option [ngValue]="15">15 Elementos por pagina</option>
+      <option [ngValue]="20">20 Elementos por pagina</option>
+    </select>
 </div>
