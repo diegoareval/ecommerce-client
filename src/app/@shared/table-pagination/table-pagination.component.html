@@ -1,3 +1,7 @@
+<button class="btn btn-success float-right mr-3">
+  <i class="fas fa-plus-circle"></i>
+  &nbsp;
+  Añadir</button>
 <div class="table-responsive">
   <table class="table table-striped">
     <thead>
@@ -5,12 +9,18 @@
         <th scope="col" *ngFor="let column of tableColumns">
           {{ column.label }}
         </th>
+        <th scope="col">
+           Gestionar Informacion
+        </th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let data of data$ | async">
         <td *ngFor="let val of tableColumns">
           {{ data[val.property] }}
+        </td>
+        <td>
+          Botones
         </td>
       </tr>
     </tbody>
