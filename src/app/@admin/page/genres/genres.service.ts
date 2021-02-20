@@ -1,16 +1,21 @@
+import { map } from 'rxjs/operators';
+import { ADD_GENRE } from './../../../@graphql/operations/mutation/genre';
 import { ApiService } from './../../../@graphql/services/api.service';
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class GenresService extends ApiService{
-
+export class GenresService extends ApiService {
   constructor(apollo: Apollo) {
-    super(apollo)
-   }
-   addGenere(name: string) {
-     
-   }
+    super(apollo);
+  }
+  addGenere(genre: string) {    
+    return this.set(ADD_GENRE, { genre }, {}).pipe(
+      map((result: any) => {        
+        return result.addGenre;
+      })
+    );
+  }
 }
