@@ -12,12 +12,14 @@ import { Observable } from 'rxjs';
   styleUrls: ['./table-pagination.component.scss'],
 })
 export class TablePaginationComponent implements OnInit {
+  // informacion de entrada que proviene del componente donde se usa este componente
   @Input() query: DocumentNode;
   @Input() context: object;
   @Input() itemsPage = 20;
   @Input() resultData: IResultData;
   @Input() tableColumns: Array<ITableColumns> = undefined;
   @Input() include = true;
+  // informacion de salida que sera tomada en el componente que requiera la informacion
   @Output() manageItem = new EventEmitter<Array<any>>();
   infoPage: IInfoPage;
   data$: Observable<any>
