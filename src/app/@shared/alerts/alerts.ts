@@ -1,19 +1,19 @@
 import Swal from 'sweetalert2';
 export async function formBasicDialog(title: string, html: string, property: string){
 
-    const { value: formValues } = await Swal.fire({
+    return await Swal.fire({
         title,
         html,
         focusConfirm: false,
         cancelButtonText: "Cancelar",
         showCancelButton: true,
         preConfirm: () => {
-          return [
-         ((document.getElementById('name')) as HTMLInputElement).value
-          ]
+            const value = ((document.getElementById('name')) as HTMLInputElement).value
+            if(value){
+                return value;
+            }
+            Swal.showValidationMessage("Debes añadir un género");
+            return;
         }
       });
-      if (formValues) {
-        Swal.fire(JSON.stringify(formValues))
-      }
 }

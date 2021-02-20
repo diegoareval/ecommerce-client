@@ -42,13 +42,14 @@ export class GenresComponent implements OnInit {
   ];
   }
 
-  takeAction($event: any){
+  async takeAction($event: any){
     console.log($event[0], $event[1]);
     const action = $event[0];
-    const html = '<input id="name" class="swal2-input">'
+    const html = '<input id="name" class="swal2-input" required>'
     if(action === 'add'){
-      console.log("add");
-      formBasicDialog("Añadir Genero", html, 'name');
+      const result = await formBasicDialog("Añadir Genero", html, 'name');
+      console.log(result);
+      
     }
     
   }
