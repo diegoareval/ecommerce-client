@@ -1,5 +1,5 @@
 import { map } from 'rxjs/operators';
-import { ADD_GENRE } from './../../../@graphql/operations/mutation/genre';
+import { ADD_GENRE, UPDATE_GENRE } from './../../../@graphql/operations/mutation/genre';
 import { ApiService } from './../../../@graphql/services/api.service';
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
@@ -11,10 +11,18 @@ export class GenresService extends ApiService {
   constructor(apollo: Apollo) {
     super(apollo);
   }
-  addGenere(genre: string) {    
+  addGenre(genre: string) {    
     return this.set(ADD_GENRE, { genre }, {}).pipe(
       map((result: any) => {        
         return result.addGenre;
+      })
+    );
+  }
+
+  updateGenre(id: string, genre: string) {    
+    return this.set(UPDATE_GENRE, { genre, id }, {}).pipe(
+      map((result: any) => {        
+        return result.updateGenre;
       })
     );
   }
