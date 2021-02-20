@@ -62,4 +62,8 @@ export class TablePaginationComponent implements OnInit {
   changePage(){
     this.loadData();
   }
+  manageAction(action: string, data: any){
+     console.log(action, data);
+     
+  }
 }

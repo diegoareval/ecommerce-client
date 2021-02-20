@@ -1,4 +1,4 @@
-<button class="btn btn-success float-right mr-3">
+<button class="btn btn-success float-right mr-3" (click)="manageAction('add', '')">
   <i class="fas fa-plus-circle"></i>
   &nbsp;
   Añadir</button>
@@ -20,7 +20,15 @@
           {{ data[val.property] }}
         </td>
         <td>
-          Botones
+          <button type="button" class="btn btn-success" (click)="manageAction('edit', data)">
+            <i class="fas fa-edit"></i>
+          </button>  &nbsp;
+          <button type="button" class="btn btn-info" (click)="manageAction('show', data)">
+            <i class="fas fa-info"></i>
+           </button>  &nbsp;
+          <button type="button" class="btn btn-danger" (click)="manageAction('lock', data)">
+            <i class="fas fa-lock"></i>
+          </button>
         </td>
       </tr>
     </tbody>
