@@ -77,6 +77,11 @@ export class GenresComponent implements OnInit {
       basicDetails('Detalles', `${genre.name} (${genre.slug})`, 400);
       return;
     }
+    if (action === 'lock') {
+      // basicDetails('Detalles', `${genre.name} (${genre.slug})`, 400);
+      this.block(genre.id)
+      return;
+    }
   }
 
   addGenre(result: any) {
@@ -91,6 +96,17 @@ export class GenresComponent implements OnInit {
 
   editGenre(id: string, result: any) {
     this.service.updateGenre(id, result.value).subscribe((res: any) => {
+      if (res.status) {
+        basicAlert(TYPE_ALERT.SUCCESS, res.message);
+        return;
+      }
+      basicAlert(TYPE_ALERT.ERROR, res.message);
+    });
+  }
+
+  block(id: string) {
+    this.service.blockGenre(id).subscribe((res: any) => {
+      console.log(res);
       if (res.status) {
         basicAlert(TYPE_ALERT.SUCCESS, res.message);
         return;
