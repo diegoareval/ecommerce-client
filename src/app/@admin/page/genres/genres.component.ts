@@ -4,7 +4,7 @@ import { IResultData } from './../../../@core/interfaces/result-data';
 import { GENRE_LIST_QUERY } from './../../../@graphql/operations/query/genre';
 import { Component, OnInit } from '@angular/core';
 import { DocumentNode } from 'graphql';
-import { basicDetails, formBasicDialog } from '@shared/alerts/alerts';
+import { optionsWithDetails, formBasicDialog } from '@shared/alerts/alerts';
 import { basicAlert } from '@shared/alerts/toasts';
 import { TYPE_ALERT } from '@shared/alerts/values.config';
 
@@ -74,12 +74,20 @@ export class GenresComponent implements OnInit {
     }
 
     if (action === 'show') {
-      basicDetails('Detalles', `${genre.name} (${genre.slug})`, 400);
+      optionsWithDetails('Detalles', `${genre.name} (${genre.slug})`, 400);
       return;
     }
     if (action === 'lock') {
-      // basicDetails('Detalles', `${genre.name} (${genre.slug})`, 400);
-      this.block(genre.id)
+      const option = optionsWithDetails(
+        'Bloquear Genero',
+        `Si bloqueas el item seleccionado, no se volvera a mostrar`,
+        400,
+        'No, no bloquear',
+        'Si Bloquear'
+      );
+      if (!option) {
+        this.block(genre.id);
+      }
       return;
     }
   }

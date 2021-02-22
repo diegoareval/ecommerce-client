@@ -21,23 +21,22 @@ export async function formBasicDialog(
   });
 }
 
-export async function basicDetails(title: string, html: string, width: number) {
-  Swal.fire({
+export async function optionsWithDetails(title: string, html: string, width: number, confirmButtonText: string = '<i class="fas fa-edit"></i> Editar', cancelButtonText: string='<i class="fas fa-lock"></i> Bloquear') {
+  return await Swal.fire({
     title,
     text: html,
     width: `${width}px`,
     showCancelButton: true,
     confirmButtonColor: '#6C757D',
     cancelButtonColor: '#DC3545',
-    confirmButtonText: '<i class="fas fa-edit"></i> Editar',
-    cancelButtonText: '<i class="fas fa-lock"></i> Bloquear',
+    confirmButtonText,
+    cancelButtonText,
   }).then((result) => {
       console.log(result);
     if (result.value) {
-        console.log("editar");
+        return true;
     }else if(result.dismiss.toString() ==='cancel'){
-        console.log("bloquear");
-        
+        return false;
     }
   });
 }
