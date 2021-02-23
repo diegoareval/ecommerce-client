@@ -1,4 +1,4 @@
-import { optionsWithDetails, formBasicDialog } from '@shared/alerts/alerts';
+import { optionsWithDetails, userFormBasicDialog } from '@shared/alerts/alerts';
 import { ITableColumns } from './../../../@core/interfaces/table-column.interface';
 import { IResultData } from './../../../@core/interfaces/result-data';
 import { USERS_LIST_QUERY } from './../../../@graphql/operations/query/user';
@@ -83,9 +83,9 @@ export class UsersComponent implements OnInit {
   }
 
   private async addForm(html: string) {
-    const result = await formBasicDialog('Añadir Usuario', html, 'name');
+    const result = await userFormBasicDialog('Añadir Usuario', html);
     if (result.value) {
-      console.log("send");
+      console.log(result.value);
       
       //this.addGenre(result);
       return;

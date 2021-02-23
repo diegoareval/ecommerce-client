@@ -18,20 +18,33 @@ const swalBasicOptions = (title: string, html: string) =>
       showCancelButton: true,
       preConfirm: () => {
         let error = ''
-        const value = (document.getElementById('name') as HTMLInputElement).value;
-        if (!value) {
-          error += 'Usuario es obligatorio'
-          return value;
+        const name = (document.getElementById('name') as HTMLInputElement).value;
+        if (!name) {
+          error += 'El Nombre es obligatorio </br>'
         }
+
+        const lastname = (document.getElementById('lastname') as HTMLInputElement).value;
+        if (!lastname) {
+          error += 'El Apellido es obligatorio </br>'
+        }
+
+        const email = (document.getElementById('email') as HTMLInputElement).value;
+        if (!email) {
+          error += 'El Email es obligatorio </br>'
+        }
+
+        const role = (document.getElementById('role') as HTMLInputElement).value;
+
+
         if(error!==''){
-          Swal.showValidationMessage('Debes añadir un género');
+          Swal.showValidationMessage(error);
         return;
         }
         return{
-          name: '',
-          lastname: '',
-          email: '',
-          role: '',
+          name,
+          lastname,
+          email,
+          role,
           birthday: new Date().toISOString()
         }
       },
