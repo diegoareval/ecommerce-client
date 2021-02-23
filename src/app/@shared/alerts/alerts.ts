@@ -1,3 +1,4 @@
+import { EMAIL_PATTERN } from '@admin/core/constants/regex';
 import Swal from 'sweetalert2';
 
 const swalBasicOptions = (title: string, html: string) => 
@@ -31,6 +32,10 @@ const swalBasicOptions = (title: string, html: string) =>
         const email = (document.getElementById('email') as HTMLInputElement).value;
         if (!email) {
           error += 'El Email es obligatorio </br>'
+        }
+
+        if(!EMAIL_PATTERN.test(email)){
+          error += 'No tiene formato de correo electronico </br>'
         }
 
         const role = (document.getElementById('role') as HTMLInputElement).value;
