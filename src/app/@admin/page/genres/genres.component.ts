@@ -49,42 +49,34 @@ export class GenresComponent implements OnInit {
   async takeAction($event: any) {
     const action = $event[0];
     const genre = $event[1];
-    let defaultValue = '';
-    if (genre.name !== undefined && genre.name !== '') {
-      defaultValue = genre.name;
-    }
+
+    // setting default value
+    
+    const defaultValue = (genre.name !== undefined && genre.name !== '') ? genre.name : '';
     const html = `<input id="name" value="${defaultValue}" class="swal2-input" required>`;
-    if (action === 'add' || 'edit') {
-      if (action === 'add') {
-        const result = await formBasicDialog('Añadir Genero', html, 'name');
+    switch(action){
+      case 'add':
+        this.addForm(html);
+        break;
+        case 'edit':
+          this.updateForm(html, genre);
+          break;
+          case 'lock':
+            this.blockModal(genre);
+            break;
+            case 'show':
+              this.showModal(html, genre);
+              break;
+
+    }
+  }
+
+  private async addForm(html: string){
+    const result = await formBasicDialog('Añadir Genero', html, 'name');
         if (result.value) {
           this.addGenre(result);
           return;
         }
-        return;
-      }
-      if (action === 'edit') {
-        this.updateForm(html, genre);
-      }
-    }
-
-    if (action === 'show') {
-      const result = await optionsWithDetails(
-        'Detalles',
-        `${genre.name} (${genre.slug})`,
-        400
-      );
-      if (result) {
-        this.updateForm(html, genre);
-      } else if (result === false) {
-        this.blockModal(genre);
-      }
-      return;
-    }
-    if (action === 'lock') {
-      this.blockModal(genre);
-      return;
-    }
   }
 
   async blockModal(genre: any) {
@@ -138,4 +130,19 @@ export class GenresComponent implements OnInit {
       basicAlert(TYPE_ALERT.ERROR, res.message);
     });
   }
+
+  async showModal(html: string, genre: any){
+    const result = await optionsWithDetails(
+      'Detalles',
+      `${genre.name} (${genre.slug})`,
+      400
+    );
+    if (result) {
+      this.updateForm(html, genre);
+    } else if (result === false) {
+      this.blockModal(genre);
+    }
+    return;
+  }
+  
 }

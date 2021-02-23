@@ -29,6 +29,7 @@ export async function optionsWithDetails(title: string, html: string, width: num
     showCancelButton: true,
     confirmButtonColor: '#6C757D',
     cancelButtonColor: '#DC3545',
+    showCloseButton: true,
     confirmButtonText,
     cancelButtonText,
   }).then((result) => {
