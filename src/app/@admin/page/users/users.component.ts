@@ -1,4 +1,4 @@
-import { optionsWithDetails } from '@shared/alerts/alerts';
+import { optionsWithDetails, formBasicDialog } from '@shared/alerts/alerts';
 import { ITableColumns } from './../../../@core/interfaces/table-column.interface';
 import { IResultData } from './../../../@core/interfaces/result-data';
 import { USERS_LIST_QUERY } from './../../../@graphql/operations/query/user';
@@ -47,6 +47,16 @@ export class UsersComponent implements OnInit {
   ];
   }
 
+  private initForm(user: any){
+     return `<input id="name" value="" class="swal2-input" placeholder="Nombre" required>
+     <input id="lastname" value="" class="swal2-input" placeholder="Apellido" required>
+     <input id="email" value="" class="swal2-input" placeholder="Email" required>
+     <select id="role" class="swal2-input">
+     <option value="ADMIN">Administrador</option>
+     <option value="CLIENT">Cliente</option>
+     </select>`;
+  }
+
   async takeAction($event: any) {
     const action = $event[0];
     const user = $event[1];
@@ -54,10 +64,10 @@ export class UsersComponent implements OnInit {
         // setting default value
 
        // const defaultValue = genre.name !== undefined && genre.name !== '' ? genre.name : '';
-     // const html = `<input id="name" value="${defaultValue}" class="swal2-input" required>`;
+      const html = this.initForm(user)
       switch (action) {
         case 'add':
-         // this.addForm(html);
+          this.addForm(html);
           break;
         case 'edit':
           //this.updateForm(html, genre);
@@ -70,6 +80,16 @@ export class UsersComponent implements OnInit {
           break;
       }
     
+  }
+
+  private async addForm(html: string) {
+    const result = await formBasicDialog('Añadir Usuario', html, 'name');
+    if (result.value) {
+      console.log("send");
+      
+      //this.addGenre(result);
+      return;
+    }
   }
 
   async showModal(user: any) {

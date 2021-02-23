@@ -1,10 +1,49 @@
 import Swal from 'sweetalert2';
+
+const swalBasicOptions = (title: string, html: string) => 
+  Swal.mixin({
+    title,
+    html,
+    focusConfirm: false,
+    cancelButtonText: 'Cancelar',
+    showCancelButton: true,
+  })
+
+  export async function userFormBasicDialog(title: string, html: string){
+    return await swalBasicOptions(title, html).fire({
+      title,
+      html,
+      focusConfirm: false,
+      cancelButtonText: 'Cancelar',
+      showCancelButton: true,
+      preConfirm: () => {
+        let error = ''
+        const value = (document.getElementById('name') as HTMLInputElement).value;
+        if (!value) {
+          error += 'Usuario es obligatorio'
+          return value;
+        }
+        if(error!==''){
+          Swal.showValidationMessage('Debes añadir un género');
+        return;
+        }
+        return{
+          name: '',
+          lastname: '',
+          email: '',
+          role: '',
+          birthday: new Date().toISOString()
+        }
+      },
+    });
+  }
+
 export async function formBasicDialog(
   title: string,
   html: string,
   property: string
 ) {
-  return await Swal.fire({
+  return await swalBasicOptions(title, html).fire({
     title,
     html,
     focusConfirm: false,
