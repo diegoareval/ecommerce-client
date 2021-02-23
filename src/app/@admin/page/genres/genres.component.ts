@@ -50,11 +50,11 @@ export class GenresComponent implements OnInit {
     const action = $event[0];
     const genre = $event[1];
     let defaultValue = '';
+    if (genre.name !== undefined && genre.name !== '') {
+      defaultValue = genre.name;
+    }
+    const html = `<input id="name" value="${defaultValue}" class="swal2-input" required>`;
     if (action === 'add' || 'edit') {
-      if (genre.name !== undefined && genre.name !== '') {
-        defaultValue = genre.name;
-      }
-      const html = `<input id="name" value="${defaultValue}" class="swal2-input" required>`;
       if (action === 'add') {
         const result = await formBasicDialog('Añadir Genero', html, 'name');
         if (result.value) {
@@ -64,30 +64,46 @@ export class GenresComponent implements OnInit {
         return;
       }
       if (action === 'edit') {
-        const result = await formBasicDialog('Modificar Genero', html, 'name');
-        if (result.value) {
-          this.editGenre(genre.id, result);
-          return;
-        }
-        return;
+        this.updateForm(html, genre);
       }
     }
 
     if (action === 'show') {
-      optionsWithDetails('Detalles', `${genre.name} (${genre.slug})`, 400);
+      const result = await optionsWithDetails(
+        'Detalles',
+        `${genre.name} (${genre.slug})`,
+        400
+      );
+      if (result) {
+        this.updateForm(html, genre);
+      } else if (result === false) {
+        this.blockModal(genre);
+      }
       return;
     }
     if (action === 'lock') {
-      const option = optionsWithDetails(
-        'Bloquear Genero',
-        `Si bloqueas el item seleccionado, no se volvera a mostrar`,
-        400,
-        'No, no bloquear',
-        'Si Bloquear'
-      );
-      if (!option) {
-        this.block(genre.id);
-      }
+      this.blockModal(genre);
+      return;
+    }
+  }
+
+  async blockModal(genre: any) {
+    const option = await optionsWithDetails(
+      'Bloquear Genero',
+      `Si bloqueas el item seleccionado, no se volvera a mostrar`,
+      400,
+      'No, no bloquear',
+      'Si Bloquear'
+    );
+    if (option === false) {
+      this.block(genre.id);
+    }
+  }
+
+  async updateForm(html: string, genre: any) {
+    const result = await formBasicDialog('Modificar Genero', html, 'name');
+    if (result.value) {
+      this.editGenre(genre.id, result);
       return;
     }
   }
