@@ -24,7 +24,7 @@ export async function formBasicDialog(
 export async function optionsWithDetails(title: string, html: string, width: number, confirmButtonText: string = '<i class="fas fa-edit"></i> Editar', cancelButtonText: string='<i class="fas fa-lock"></i> Bloquear') {
   return await Swal.fire({
     title,
-    text: html,
+    html,
     width: `${width}px`,
     showCancelButton: true,
     confirmButtonColor: '#6C757D',

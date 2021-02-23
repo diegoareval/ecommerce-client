@@ -51,32 +51,32 @@ export class GenresComponent implements OnInit {
     const genre = $event[1];
 
     // setting default value
-    
-    const defaultValue = (genre.name !== undefined && genre.name !== '') ? genre.name : '';
+
+    const defaultValue =
+      genre.name !== undefined && genre.name !== '' ? genre.name : '';
     const html = `<input id="name" value="${defaultValue}" class="swal2-input" required>`;
-    switch(action){
+    switch (action) {
       case 'add':
         this.addForm(html);
         break;
-        case 'edit':
-          this.updateForm(html, genre);
-          break;
-          case 'lock':
-            this.blockModal(genre);
-            break;
-            case 'show':
-              this.showModal(html, genre);
-              break;
-
+      case 'edit':
+        this.updateForm(html, genre);
+        break;
+      case 'lock':
+        this.blockModal(genre);
+        break;
+      case 'show':
+        this.showModal(html, genre);
+        break;
     }
   }
 
-  private async addForm(html: string){
+  private async addForm(html: string) {
     const result = await formBasicDialog('Añadir Genero', html, 'name');
-        if (result.value) {
-          this.addGenre(result);
-          return;
-        }
+    if (result.value) {
+      this.addGenre(result);
+      return;
+    }
   }
 
   async blockModal(genre: any) {
@@ -131,7 +131,7 @@ export class GenresComponent implements OnInit {
     });
   }
 
-  async showModal(html: string, genre: any){
+  async showModal(html: string, genre: any) {
     const result = await optionsWithDetails(
       'Detalles',
       `${genre.name} (${genre.slug})`,
@@ -144,5 +144,4 @@ export class GenresComponent implements OnInit {
     }
     return;
   }
-  
 }

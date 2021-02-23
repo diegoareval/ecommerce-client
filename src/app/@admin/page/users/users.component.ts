@@ -1,3 +1,4 @@
+import { optionsWithDetails } from '@shared/alerts/alerts';
 import { ITableColumns } from './../../../@core/interfaces/table-column.interface';
 import { IResultData } from './../../../@core/interfaces/result-data';
 import { USERS_LIST_QUERY } from './../../../@graphql/operations/query/user';
@@ -45,4 +46,46 @@ export class UsersComponent implements OnInit {
     }
   ];
   }
+
+  async takeAction($event: any) {
+    const action = $event[0];
+    const user = $event[1];
+   // console.log(action, user);
+        // setting default value
+
+       // const defaultValue = genre.name !== undefined && genre.name !== '' ? genre.name : '';
+     // const html = `<input id="name" value="${defaultValue}" class="swal2-input" required>`;
+      switch (action) {
+        case 'add':
+         // this.addForm(html);
+          break;
+        case 'edit':
+          //this.updateForm(html, genre);
+          break;
+        case 'lock':
+         // this.blockModal(genre);
+          break;
+        case 'show':
+          this.showModal(user);
+          break;
+      }
+    
+  }
+
+  async showModal(user: any) {
+    const result = await optionsWithDetails(
+      'Detalles',
+      `${user.name} ${user.lastname} </br>
+      <i class="fas fa-envelope-open-text"><i/>&nbsp;&nbsp;${user.email}`,
+      400
+    );
+    /*if (result) {
+      this.updateForm(html, genre);
+    } else if (result === false) {
+      this.blockModal(genre);
+    }
+    return;
+      */
+  }
+
 }
