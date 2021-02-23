@@ -1,9 +1,13 @@
+import { IRegisterForm } from '@core/interfaces/register.interface';
+import { UsersAdminService } from './users-admin.service';
 import { optionsWithDetails, userFormBasicDialog } from '@shared/alerts/alerts';
 import { ITableColumns } from './../../../@core/interfaces/table-column.interface';
 import { IResultData } from './../../../@core/interfaces/result-data';
 import { USERS_LIST_QUERY } from './../../../@graphql/operations/query/user';
 import { Component, OnInit } from '@angular/core';
 import { DocumentNode } from 'graphql';
+import { basicAlert } from '@shared/alerts/toasts';
+import { TYPE_ALERT } from '@shared/alerts/values.config';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -16,6 +20,7 @@ export class UsersComponent implements OnInit {
   include: boolean;
   resultData: IResultData;
   columns: Array<ITableColumns>;
+  constructor(private service: UsersAdminService){}
   ngOnInit(): void {
     this.context = {};
     this.itemsPage = 5;
@@ -81,13 +86,24 @@ export class UsersComponent implements OnInit {
       }
     
   }
+  private addUser(result: any){
+    const user: IRegisterForm = result;
+    user.password = '1234';
+    user.active = false;
+    this.service.register(user).subscribe((res: any) => {
+      if (res.status) {
+        basicAlert(TYPE_ALERT.SUCCESS, res.message);
+        return;
+      }
+      basicAlert(TYPE_ALERT.ERROR, res.message);
+    });
+
+  }
 
   private async addForm(html: string) {
     const result = await userFormBasicDialog('Añadir Usuario', html);
     if (result.value) {
-      console.log(result.value);
-      
-      //this.addGenre(result);
+      this.addUser(result);
       return;
     }
   }
