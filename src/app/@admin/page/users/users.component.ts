@@ -53,12 +53,19 @@ export class UsersComponent implements OnInit {
   }
 
   private initForm(user: any){
-     return `<input id="name" value="" class="swal2-input" placeholder="Nombre" required>
-     <input id="lastname" value="" class="swal2-input" placeholder="Apellido" required>
-     <input id="email" value="" class="swal2-input" placeholder="Email" required>
+    // default values
+    const name = user.name !== undefined && user.name !== '' ? user.name : '';
+    const lastname = user.lastname !== undefined && user.lastname !== '' ? user.lastname : '';
+    const email = user.email !== undefined && user.email !== '' ? user.email : '';
+    const roles = new Array(2);
+    roles[0] = user.role !== undefined && user.role === 'ADMIN' ? 'selected' : '';
+    roles[1] = user.role !== undefined && user.role === 'CLIENT' ? 'selected' : '';
+     return `<input id="name" value="${name}" class="swal2-input" placeholder="Nombre" required>
+     <input id="lastname" value="${lastname}" class="swal2-input" placeholder="Apellido" required>
+     <input id="email" value="${email}" class="swal2-input" placeholder="Email" required>
      <select id="role" class="swal2-input">
-     <option value="ADMIN">Administrador</option>
-     <option value="CLIENT">Cliente</option>
+     <option value="ADMIN" ${roles[0]}>Administrador</option>
+     <option value="CLIENT" ${roles[1]}>Cliente</option>
      </select>`;
   }
 
@@ -75,7 +82,7 @@ export class UsersComponent implements OnInit {
           this.addForm(html);
           break;
         case 'edit':
-          //this.updateForm(html, genre);
+          this.updateForm(html, user);
           break;
         case 'lock':
          // this.blockModal(genre);
@@ -108,6 +115,14 @@ export class UsersComponent implements OnInit {
     const result = await userFormBasicDialog('Añadir Usuario', html);
     if (result.value) {
       this.addUser(result.value);
+      return;
+    }
+  }
+
+  async updateForm(html: string, genre: any) {
+    const result = await userFormBasicDialog('Modificar Usuario', html);
+    if (result.value) {
+      // this.editGenre(genre.id, result);
       return;
     }
   }
