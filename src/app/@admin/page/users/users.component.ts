@@ -91,8 +91,8 @@ export class UsersComponent implements OnInit {
           this.showModal(user);
           break;
       }
-    
   }
+
   private addUser(result: any){
     const user: IRegisterForm = result;
     user.password = '1234';
@@ -102,6 +102,18 @@ export class UsersComponent implements OnInit {
     this.service.register(user).subscribe((res: any) => {
       console.log(res);
       
+      if (res.status) {
+        basicAlert(TYPE_ALERT.SUCCESS, res.message);
+        return;
+      }
+      basicAlert(TYPE_ALERT.ERROR, res.message);
+    });
+  }
+
+  private updateUser(result: any, id: string){
+    const user = result;
+    user.id = id;
+    this.service.update(user).subscribe((res: any) => {
       if (res.status) {
         basicAlert(TYPE_ALERT.SUCCESS, res.message);
         return;
@@ -119,10 +131,10 @@ export class UsersComponent implements OnInit {
     }
   }
 
-  async updateForm(html: string, genre: any) {
+  async updateForm(html: string, user: any) {
     const result = await userFormBasicDialog('Modificar Usuario', html);
     if (result.value) {
-      // this.editGenre(genre.id, result);
+     this.updateUser(result.value, user.id);
       return;
     }
   }

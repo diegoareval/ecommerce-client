@@ -1,10 +1,4 @@
-import { REGISTER_USER } from './../operations/mutation/user';
-import { IRegisterForm } from './../../@core/interfaces/register.interface';
-import {
-  LOGIN_QUERY,
-  USERS_LIST_QUERY,
-  ME_DATA_QUERY,
-} from '@graphql/operations/query/user';
+
 import { Apollo } from 'apollo-angular';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
