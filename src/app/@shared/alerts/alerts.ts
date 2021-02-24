@@ -50,7 +50,7 @@ const swalBasicOptions = (title: string, html: string) =>
           lastname,
           email,
           role,
-          birthday: new Date().toISOString()
+          birthdate: new Date().toISOString()
         }
       },
     });

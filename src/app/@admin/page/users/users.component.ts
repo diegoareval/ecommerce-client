@@ -89,8 +89,12 @@ export class UsersComponent implements OnInit {
   private addUser(result: any){
     const user: IRegisterForm = result;
     user.password = '1234';
-    user.active = false;
+    user.active = false;    
+    console.log(user);
+    
     this.service.register(user).subscribe((res: any) => {
+      console.log(res);
+      
       if (res.status) {
         basicAlert(TYPE_ALERT.SUCCESS, res.message);
         return;
@@ -103,7 +107,7 @@ export class UsersComponent implements OnInit {
   private async addForm(html: string) {
     const result = await userFormBasicDialog('Añadir Usuario', html);
     if (result.value) {
-      this.addUser(result);
+      this.addUser(result.value);
       return;
     }
   }
