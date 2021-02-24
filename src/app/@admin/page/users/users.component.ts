@@ -85,10 +85,10 @@ export class UsersComponent implements OnInit {
           this.updateForm(html, user);
           break;
         case 'lock':
-         // this.blockModal(genre);
+          this.blockModal(user);
           break;
         case 'show':
-          this.showModal(user);
+          this.showModal(user, html);
           break;
       }
   }
@@ -120,7 +120,30 @@ export class UsersComponent implements OnInit {
       }
       basicAlert(TYPE_ALERT.ERROR, res.message);
     });
+  }
 
+  block(id: string) {
+    this.service.blockUser(id).subscribe((res: any) => {
+      console.log(res);
+      if (res.status) {
+        basicAlert(TYPE_ALERT.SUCCESS, res.message);
+        return;
+      }
+      basicAlert(TYPE_ALERT.ERROR, res.message);
+    });
+  }
+
+  async blockModal(user: any) {
+    const option = await optionsWithDetails(
+      'Bloquear Genero',
+      `Si bloqueas el item seleccionado, no se volvera a mostrar`,
+      400,
+      'No, no bloquear',
+      'Si Bloquear'
+    );
+    if (option === false) {
+      this.block(user.id);
+    }
   }
 
   private async addForm(html: string) {
@@ -139,20 +162,20 @@ export class UsersComponent implements OnInit {
     }
   }
 
-  async showModal(user: any) {
+  async showModal(user: any, html: string) {
     const result = await optionsWithDetails(
       'Detalles',
       `${user.name} ${user.lastname} </br>
       <i class="fas fa-envelope-open-text"><i/>&nbsp;&nbsp;${user.email}`,
       400
     );
-    /*if (result) {
-      this.updateForm(html, genre);
+    if (result) {
+      this.updateForm(html, user);
     } else if (result === false) {
-      this.blockModal(genre);
+      this.blockModal(user);
     }
     return;
-      */
+  
   }
 
 }

@@ -1,5 +1,5 @@
 import { map } from 'rxjs/operators';
-import { UPDATE_USER } from './../../../@graphql/operations/mutation/user';
+import { UPDATE_USER, BLOCK_USER } from './../../../@graphql/operations/mutation/user';
 import { Apollo } from 'apollo-angular';
 import { ApiService } from './../../../@graphql/services/api.service';
 import { IRegisterForm } from '@core/interfaces/register.interface';
@@ -27,5 +27,13 @@ export class UsersAdminService extends ApiService{
       }).pipe(map((result: any)=>{
         return result.updateUser;
       }));
+  }
+
+  blockUser(id: string){
+    return this.set(BLOCK_USER, { id }, {}).pipe(
+      map((result: any) => {        
+        return result.blockUser;
+      })
+    );
   }
 }

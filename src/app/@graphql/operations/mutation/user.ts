@@ -27,3 +27,12 @@ mutation updateUser($user:UserInput!, $include: Boolean!){
 ${USER_FRAGMENT}
 `;
 
+export const BLOCK_USER = gql`
+  mutation blockUser($id: ID!) {
+    blockUser(id: $id) {
+      status
+      message
+    }
+  }
+`;
+
